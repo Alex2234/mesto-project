@@ -1,0 +1,11 @@
+.person {
+  display: flex;
+  gap: 30px;
+}
+
+@media (max-width: 560px) {
+  .person {
+    flex-direction: column;
+    gap: 26px;
+  }
+}

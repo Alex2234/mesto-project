@@ -1,0 +1,24 @@
+.info__subtitle {
+  margin: 0;
+  line-height: 22px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+@media (max-width: 735px) {
+  .info__subtitle {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 650px) {
+  .info__subtitle {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .info__subtitle {
+    text-align: center;
+  }
+}

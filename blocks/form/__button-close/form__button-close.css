@@ -1,0 +1,30 @@
+.form__button-close {
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  background-image: url(../../../images/close_desktop.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  position: relative;
+  top: -40px;
+  left: calc(100% + 8px);
+  border: none;
+
+}
+
+.form__button-close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .form__button-close {
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+    left: calc(100% - 20px);
+    top: -36px;
+  }
+}
