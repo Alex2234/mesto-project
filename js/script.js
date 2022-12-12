@@ -1,153 +1,142 @@
-const openPopupEdit=document.getElementById('popup_info-edit');
-const btnOpenPopupEdit=document.querySelector('.info__edit-button');
-let btnClose=document.querySelector('.popup__button-close');
-let nameInfo=document.querySelector('.info__title');
-let jobInfo=document.querySelector('.info__subtitle');
-const openPopupImage=document.getElementById('popup_image');
-const popupupImageLink=document.querySelector('.popup__image');
-const popupImageName=document.querySelector('.popup__title-image');
-const elementsList=document.querySelector('.elements');
+const editPopup = document.getElementById("popup_info-edit");
+const editPopupBtn = document.querySelector(".info__edit-button");
+const closeButtons = document.querySelectorAll('.popup__button-close');
+const nameInfo = document.querySelector(".info__title");
+const jobInfo = document.querySelector(".info__subtitle");
+const openPopupImage = document.getElementById("popup_image");
+const popupupImageLink = document.querySelector(".popup__image");
+const popupImageName = document.querySelector(".popup__title-image");
+const elementsList = document.querySelector(".elements");
+const infoForm = document.forms["form_info"];
+const cardForm = document.forms["form_card"];
+const nameInput = document.getElementById("input_name");
+const jobInput = document.getElementById("input_job");
+const addPopupBtn = document.querySelector(".profile__add-button");
+const addPopup = document.getElementById("popup_add");
+const inputNameCard = document.getElementById("name-card");
+const inputImgCard = document.getElementById("img-card");
+const editSaveBtn = document.getElementById("edit_save_btn");
+const addSaveBtn = document.getElementById("add_save_btn");
 
-function openPopup(i) {
-  i.classList.add('popup_opened')
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
 }
 
-function closePopup(i) {
-  i.classList.remove('popup_opened')
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
-btnOpenPopupEdit.addEventListener('click', function() {
-  openPopup(openPopupEdit);
-  document.getElementById('input_name').value=nameInfo.textContent;
-  document.getElementById('input_job').value=jobInfo.textContent;
+
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
 });
 
-btnClose.addEventListener('click', function() {
-  closePopup(openPopupEdit);
+
+
+editPopupBtn.addEventListener("click", function () {
+  openPopup(editPopup);
+  nameInput.value = nameInfo.textContent;
+  jobInput.value = jobInfo.textContent;
 });
 
 
 
-// Находим форму в DOM
-const formElement=document.getElementById('form_info');
-// Воспользуйтесь методом querySelector()
-// Находим поля формы в DOM
-const nameInput=document.getElementById('input_name');
-// Воспользуйтесь инструментом .querySelector()
-const jobInput=document.getElementById('input_job');
-// Воспользуйтесь инструментом .querySelector()
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler (evt) {
+function handleInfoFormSubmit(evt) {
   evt.preventDefault();
-// Эта строчка отменяет стандартную отправку формы.
-// Так мы можем определить свою логику отправки.
-// О том, как это делать, расскажем позже.
-// Получите значение полей jobInput и nameInput из свойства value
-let nameI=nameInput.value;
-let jobI=jobInput.value;
+  const nameI = nameInput.value;
+  const jobI = jobInput.value;
 
-// Выберите элементы, куда должны быть вставлены значения полей
-// Вставьте новые значения с помощью textContent
-nameInfo.textContent=nameI;
-jobInfo.textContent=jobI;
-
-openPopupEdit.classList.remove('popup_opened');
+  nameInfo.textContent = nameI;
+  jobInfo.textContent = jobI;
 }
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-formElement.addEventListener('submit', formSubmitHandler);
+
+infoForm.addEventListener("submit", handleInfoFormSubmit);
 
 
 
-//добавление карточек
+editSaveBtn.addEventListener("click", function () {
+  closePopup(editPopup);
+});
+
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-  ];
-
-
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
 
 function createCard(link, name) {
-  const elementTemplate=document.querySelector('#card').content;
-  const elementCard=elementTemplate.querySelector('.element').cloneNode(true);
-  elementCard.querySelector('.element__foto').src=link;
-  elementCard.querySelector('.element__foto').alt=name;
-  elementCard.querySelector('.element__title').textContent=name;
-  elementCard.querySelector('.element__like').addEventListener('click', function(evt) {
-    evt.target.classList.toggle('element__like_active');
-  });
-  elementCard.querySelector('.element__delete').addEventListener('click', function(evt) {
-    const deleteElement=elementCard.querySelector('.element__delete').closest('.element');
-      deleteElement.remove();
-  });
-  elementCard.querySelector('.element__foto').addEventListener('click', function() {
+  const elementTemplate = document.querySelector("#card").content;
+  const elementCard = elementTemplate.querySelector(".element").cloneNode(true);
+  const cardFoto = elementCard.querySelector(".element__foto");
+  const cardTitle = elementCard.querySelector(".element__title");
+  cardFoto.src = link;
+  cardFoto.alt = name;
+  cardTitle.textContent = name;
+  elementCard
+    .querySelector(".element__like")
+    .addEventListener("click", function (evt) {
+      evt.target.classList.toggle("element__like_active");
+    });
+
+  cardFoto.addEventListener("click", function () {
     openPopup(openPopupImage);
-    popupupImageLink.src=elementCard.querySelector('.element__foto').src;
-    popupupImageLink.alt=elementCard.querySelector('.element__title').alt;
-    popupImageName.textContent=elementCard.querySelector('.element__title').textContent;
+    popupupImageLink.src = link;
+    popupupImageLink.alt = name;
+    popupImageName.textContent = name;
   });
+
+  elementCard
+    .querySelector(".element__delete")
+    .addEventListener("click", function (evt) {
+      elementCard.remove();
+    });
 
   return elementCard;
-};
+}
 
-
-  initialCards.forEach(function(item) {
-    elementsList.append(createCard(item.link, item.name));
-  });
-
-const btnCloseImage=document.getElementById('btn_close-image');
-
-btnCloseImage.addEventListener('click', function() {
-  closePopup(openPopupImage);
-});
-//кнопка добавления карточки
-const btnOpenPopupAdd=document.querySelector('.profile__add-button');
-const openPopupAdd=document.getElementById('popup_add');
-const btnCloseAdd=document.getElementById('btn_close-add');
-
-btnOpenPopupAdd.addEventListener('click', function() {
-  openPopup(openPopupAdd);
+initialCards.forEach(function (item) {
+  elementsList.append(createCard(item.link, item.name));
 });
 
-btnCloseAdd.addEventListener('click', function() {
-  closePopup(openPopupAdd);
+
+addPopupBtn.addEventListener("click", function () {
+  openPopup(addPopup);
 });
 
-const formCard=document.getElementById('form_card');
-const inputNameCard=document.getElementById('name-card');
-const inputImgCard=document.getElementById('img-card');
 
-
-function formSubmitHandlerCard (evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
-elementsList.prepend(createCard(inputImgCard.value, inputNameCard.value));
-};
+  elementsList.prepend(createCard(inputImgCard.value, inputNameCard.value));
+  evt.target.reset();
+}
 
-formCard.addEventListener('submit', formSubmitHandlerCard);
+cardForm.addEventListener("submit", handleCardFormSubmit);
 
-
-
-
+addSaveBtn.addEventListener("click", function () {
+  closePopup(addPopup);
+});

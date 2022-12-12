@@ -42,26 +42,26 @@
       <div class="popup" id="popup_info-edit">
         <div class="popup__container">
         <button type="button" class="popup__button-close"></button>
-        <form class="form" name="info" id="form_info">
+        <form class="form" name="form_info">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__field">
             <input type="text" name="name" required class="form__input-text-name" id="input_name"/>
             <input type="text" name="who-job" required class="form__input-text-job" id="input_job"/>
           </fieldset>
-          <button type="submit" class="form__button-save">Сохранить</button>
+          <button type="submit" class="form__button-save" id="edit_save_btn">Сохранить</button>
         </form>
       </div>
     </div>
     <div class="popup" id="popup_add">
       <div class="popup__container">
       <button type="button" class="popup__button-close" id="btn_close-add"></button>
-      <form class="form" id="form_card" >
+      <form class="form" name="form_card" >
         <h2 class="form__title">Новое место</h2>
         <fieldset class="form__field">
           <input type="text" name="nameCard" required class="form__input-text-name" id="name-card"/>
           <input type="text" name="link" required class="form__input-text-job" id="img-card"/>
         </fieldset>
-        <button type="submit" class="form__button-save">Сохранить</button>
+        <button type="submit" class="form__button-save" id="add_save_btn">Сохранить</button>
       </form>
     </div>
   </div>
