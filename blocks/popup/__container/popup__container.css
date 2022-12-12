@@ -1,4 +1,5 @@
 .popup__container {
   align-self: center;
   z-index: 1;
+  position: relative;
 }

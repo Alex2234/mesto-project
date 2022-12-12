@@ -33,89 +33,60 @@
           <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
-          <div class="element">
-            <img
-              src="./images/karachaev.jpg"
-              alt="крепость"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Карачаевск</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elbrus.jpg"
-              alt="гора Эльбрус"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/dombai.jpg"
-              alt="горы на Домбае"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/karachaev.jpg"
-              alt="крепость"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Карачаево-Черкессия</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elbrus.jpg"
-              alt="гора Эльбрус"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Гора Эльбрус</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/dombai.jpg"
-              alt="горы на Домбае"
-              class="element__foto"
-            />
-            <div class="element__item">
-              <h2 class="element__title">Домбай</h2>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
+
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
-      <div class="popup popup_opened">
+      <div class="popup" id="popup_info-edit">
         <div class="popup__container">
         <button type="button" class="popup__button-close"></button>
-        <form class="form" name="info">
+        <form class="form" name="info" id="form_info">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__field">
-            <input type="text" name="name" required class="form__input-text"/>
-            <input type="text" name="who-works" required class="form__input-text"/>
+            <input type="text" name="name" required class="form__input-text-name" id="input_name"/>
+            <input type="text" name="who-job" required class="form__input-text-job" id="input_job"/>
           </fieldset>
           <button type="submit" class="form__button-save">Сохранить</button>
         </form>
       </div>
     </div>
+    <div class="popup" id="popup_add">
+      <div class="popup__container">
+      <button type="button" class="popup__button-close" id="btn_close-add"></button>
+      <form class="form" id="form_card" >
+        <h2 class="form__title">Новое место</h2>
+        <fieldset class="form__field">
+          <input type="text" name="nameCard" required class="form__input-text-name" id="name-card"/>
+          <input type="text" name="link" required class="form__input-text-job" id="img-card"/>
+        </fieldset>
+        <button type="submit" class="form__button-save">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup" id="popup_image">
+    <div class="popup__container">
+    <button type="button" class="popup__button-close" id="btn_close-image"></button>
+    <img src="" alt="" class="popup__image">
+    <p class="popup__title-image"></p>
+  </div>
+</div>
+  <template id="card">
+    <div class="element">
+      <button type="button" class="element__delete"></button>
+      <img
+      src=""
+      alt=""
+      class="element__foto"
+      />
+      <div class="element__item">
+       <h2 class="element__title"></h2>
+       <button type="button" class="element__like"></button>
+      </div>
+   </div>
+  </template>
+
   </body>
+  <script src="js/script.js"></script>
 </html>

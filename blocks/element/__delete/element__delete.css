@@ -1,9 +1,11 @@
-.element__like {
+.element__delete {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   box-sizing: border-box;
-  width: 22px;
+  width: 18px;
   height: 19px;
-  align-self: center;
-  background-image: url(../../../images/love.svg);
+  background-image: url(../../../images/korzina.svg);
   background-color: transparent;
   background-position: center;
   background-size: contain;
@@ -11,9 +13,8 @@
   border: none;
 }
 
-.element__like:hover {
+
+.element__delete:hover {
   opacity: 0.5;
   cursor: pointer;
 }
-
-
