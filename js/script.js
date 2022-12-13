@@ -50,17 +50,13 @@ function handleInfoFormSubmit(evt) {
   const nameI = nameInput.value;
   const jobI = jobInput.value;
 
+
   nameInfo.textContent = nameI;
   jobInfo.textContent = jobI;
-}
-
-infoForm.addEventListener("submit", handleInfoFormSubmit);
-
-
-
-editSaveBtn.addEventListener("click", function () {
   closePopup(editPopup);
-});
+}
+  infoForm.addEventListener("submit", handleInfoFormSubmit);
+
 
 const initialCards = [
   {
@@ -133,10 +129,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   elementsList.prepend(createCard(inputImgCard.value, inputNameCard.value));
   evt.target.reset();
+  closePopup(addPopup);
 }
 
 cardForm.addEventListener("submit", handleCardFormSubmit);
-
-addSaveBtn.addEventListener("click", function () {
-  closePopup(addPopup);
-});
