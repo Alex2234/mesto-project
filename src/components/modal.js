@@ -1,23 +1,21 @@
 //Закрытие при нажатии на Esc
-function closeEsc(evt) {
+function handleEscape(evt) {
   if (evt.key === "Escape") {
-    const esc = document.querySelector(".popup_opened");
-    closePopup(esc);
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
   }
 }
 
 //функция открытия Popup
 function openPopup(popup) {
   popup.classList.add("popup_opened");
-  document.addEventListener('keydown', closeEsc);
+  document.addEventListener("keydown", handleEscape);
 }
-
 
 //функция закрытия Popup
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
-  document.removeEventListener('keydown', closeEsc);
+  document.removeEventListener("keydown", handleEscape);
 }
 
-
-export {openPopup, closePopup}
+export { openPopup, closePopup };
