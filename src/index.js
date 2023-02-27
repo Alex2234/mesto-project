@@ -1,3 +1,5 @@
+import './pages/index.css';
+
 import {popupes, editPopup, editPopupBtn, closeButtons, nameInfo, jobInfo,
   elementsList, infoForm, cardForm, nameInput, jobInput,
   addPopupBtn, addPopup, inputNameCard, inputImgCard,
