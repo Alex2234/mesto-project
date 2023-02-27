@@ -1,33 +1,43 @@
-import './pages/index.css';
+import "./pages/index.css";
 
-import {popupes, editPopup, editPopupBtn, closeButtons, nameInfo, jobInfo,
-  elementsList, infoForm, cardForm, nameInput, jobInput,
-  addPopupBtn, addPopup, inputNameCard, inputImgCard,
-  initialCards, settings} from './components/constans.js';
+import {
+  popupes,
+  editPopup,
+  editPopupBtn,
+  closeButtons,
+  nameInfo,
+  jobInfo,
+  elementsList,
+  infoForm,
+  cardForm,
+  nameInput,
+  jobInput,
+  addPopupBtn,
+  addPopup,
+  inputNameCard,
+  inputImgCard,
+  initialCards,
+  settings,
+} from "./components/constans.js";
 
-import {openPopup, closePopup} from './components/modal.js';
-import {createCard} from './components/card.js'
-import {enableValidation} from './components/validate.js';
+import { openPopup, closePopup } from "./components/modal.js";
+import { createCard } from "./components/card.js";
+import { enableValidation } from "./components/validate.js";
 
 //Закрытие при нажатии на Крестик
 closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-})
+  const popup = button.closest(".popup");
+  button.addEventListener("click", () => closePopup(popup));
+});
 
 // Закрытие при нажатии на Оверлей
-popupes.forEach(popup => {
-  popup.addEventListener('click', (evt) => {
-     if (evt.target === evt.currentTarget) {
-        closePopup(popup)
-     }
-  })
-})
-
-
-//
-
-
+popupes.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    }
+  });
+});
 
 //Открытие попапа редактирование профиля
 editPopupBtn.addEventListener("click", function () {
@@ -72,4 +82,5 @@ function handleCardFormSubmit(evt) {
 //Сохранение карточки
 cardForm.addEventListener("submit", handleCardFormSubmit);
 
+//Валидация форм
 enableValidation(settings);

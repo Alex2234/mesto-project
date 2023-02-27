@@ -1,8 +1,12 @@
 import { openPopup } from "./modal.js";
-import { openPopupImage, popupImageName, popupupImageLink } from "./constans.js";
+import {
+  openPopupImage,
+  popupImageName,
+  popupupImageLink,
+} from "./constans.js";
 
 //Функция создания карточек
- function createCard(link, name) {
+function createCard(link, name) {
   const elementTemplate = document.querySelector("#card").content;
   const elementCard = elementTemplate.querySelector(".element").cloneNode(true);
   const cardFoto = elementCard.querySelector(".element__foto");
@@ -32,4 +36,4 @@ import { openPopupImage, popupImageName, popupupImageLink } from "./constans.js"
   return elementCard;
 }
 
-export {createCard}
+export { createCard };

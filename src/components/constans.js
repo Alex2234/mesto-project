@@ -1,7 +1,7 @@
 export const popupes = document.querySelectorAll(".popup");
 export const editPopup = document.getElementById("popup_info-edit");
 export const editPopupBtn = document.querySelector(".info__edit-button");
-export const closeButtons = document.querySelectorAll('.popup__button-close');
+export const closeButtons = document.querySelectorAll(".popup__button-close");
 export const nameInfo = document.querySelector(".info__title");
 export const jobInfo = document.querySelector(".info__subtitle");
 export const openPopupImage = document.getElementById("popup_image");
@@ -18,7 +18,6 @@ export const inputNameCard = document.getElementById("input_nameCard");
 export const inputImgCard = document.getElementById("input_link");
 export const editSaveBtn = document.getElementById("edit_save_btn");
 export const addSaveBtn = document.getElementById("add_save_btn");
-export const form = document.querySelector('.form');
 
 //Массив карточек
 export const initialCards = [
@@ -49,10 +48,10 @@ export const initialCards = [
 ];
 
 export const settings = {
-  formSelector: 'form',
-  inputSelector: 'form__input',
-  submitButtonSelector: 'form__button-save',
-  inactiveButtonClass: 'form__button-save_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-}
+  formSelector: "form",
+  inputSelector: "form__input",
+  submitButtonSelector: "form__button-save",
+  inactiveButtonClass: "form__button-save_inactive",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
