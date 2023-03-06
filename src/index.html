@@ -18,6 +18,7 @@
       <main>
         <section class="profile">
           <div class="profile__person">
+            <div class="profile__avatar-edit"></div>
             <img
               src="<%=require('./images/ava.png')%>"
               alt="лицо человека"
@@ -32,7 +33,6 @@
           <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
-
         </section>
       </main>
       <footer class="footer">
@@ -74,7 +74,7 @@
           <span class="form__input-error input_link-error"></span>
         </div>
         </fieldset>
-        <button type="submit" class="form__button-save" id="add_save_btn">Сохранить</button>
+        <button type="submit" class="form__button-save" id="add_save_btn">Создать</button>
       </form>
     </div>
   </div>
@@ -84,7 +84,22 @@
     <img src="" alt="" class="popup__image">
     <p class="popup__title-image"></p>
   </div>
-</div>
+  </div>
+  <div class="popup" id="popup_avatar">
+  <div class="popup__container">
+  <button type="button" class="popup__button-close" id="btn_close-image"></button>
+  <form class="form" name="form_avatar" novalidate>
+    <h2 class="form__title">Обновить аватар</h2>
+    <fieldset class="form__field-avatar">
+      <div class="form__field-input">
+        <input type="url" name="link" required placeholder="Ссылка на аватар" class="form__input" id="input_link-avatar"/>
+        <span class="form__input-error input_link-avatar-error"></span>
+      </div>
+    </fieldset>
+    <button type="submit" class="form__button-save" id="form__button-save">Сохранить</button>
+    </form>
+    </div>
+  </div>
   <template id="card">
     <div class="element">
       <button type="button" class="element__delete"></button>
@@ -95,7 +110,10 @@
       />
       <div class="element__item">
        <h2 class="element__title"></h2>
-       <button type="button" class="element__like"></button>
+       <div class="element__like-container">
+        <button type="button" class="element__like"></button>
+        <p class="element__counter-like"></p>
+      </div>
       </div>
    </div>
   </template>

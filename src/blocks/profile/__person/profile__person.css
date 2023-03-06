@@ -1,6 +1,5 @@
 .profile__person {
   display: flex;
-  gap: 30px;
 }
 
 @media (max-width: 560px) {

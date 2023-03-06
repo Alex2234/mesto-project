@@ -9,6 +9,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
+  transition: .3s;
 }
 
 .element__like_active:hover {

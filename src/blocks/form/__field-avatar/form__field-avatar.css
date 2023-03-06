@@ -1,0 +1,15 @@
+.form__field-avatar {
+    align-self: center;
+    padding: 0;
+    margin: 0;
+    width: 358px;
+    border: none;
+    padding-bottom: 48px;
+  }
+
+    @media (max-width: 560px) {
+      .form__field-avatar {
+        width: 238px;
+      }
+    }
+

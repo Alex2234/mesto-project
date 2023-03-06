@@ -1,0 +1,18 @@
+.form__title-delete {
+  margin: 0;
+  color: #000;
+  line-height: 29px;
+  font-weight: 900;
+  font-size: 24px;
+  padding: 34px 0 38px 34px ;
+  }
+
+  @media (max-width: 560px) {
+    .form__title-delete {
+     line-height: 22px;
+     font-size: 18px;
+     align-self: center;
+     text-align: center;
+     padding: 25px 0 38px 0;
+    }
+  }
