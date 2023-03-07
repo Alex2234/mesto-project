@@ -24,7 +24,9 @@ export const inputImgCard = document.getElementById("input_link");
 export const myId = {
   id: " ",
 };
-export const saveBtn = document.querySelectorAll(".form__button-save");
+export const cardCreateBtn = document.getElementById("add_save_btn");
+export const editSaveBtn = document.getElementById("edit_save_btn");
+export const avatarSaveBtn = document.getElementById("avatar__button-save");
 
 export const settings = {
   formSelector: "form",

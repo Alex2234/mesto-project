@@ -22,7 +22,9 @@ import {
   popupAvatar,
   editAvatarBtn,
   avatarForm,
-  saveBtn,
+  editSaveBtn,
+  cardCreateBtn,
+  avatarSaveBtn,
   settings,
 } from "./components/constans.js";
 
@@ -83,11 +85,11 @@ cardsAdd()
   });
 
 //Функция демонстрации процесса загрузки
-function renderLoading(isLoading, textTrue, textFalse) {
+function renderLoading(isLoading, button, textTrue, textFalse) {
   if (isLoading) {
-    saveBtn.textContent = textTrue;
+    button.textContent = textTrue;
   } else {
-    saveBtn.textContent = textFalse;
+    button.textContent = textFalse;
   }
 }
 
@@ -96,7 +98,7 @@ function handleInfoFormSubmit(evt) {
   evt.preventDefault();
   const nameI = nameInput.value;
   const jobI = jobInput.value;
-  renderLoading(true, "Сохранение...", "Сохранить");
+  renderLoading(true, editSaveBtn, "Сохранение...", "Сохранить");
   updateProfile(nameI, jobI, myId)
     .then((data) => {
       nameInfo.textContent = data.name;
@@ -107,7 +109,7 @@ function handleInfoFormSubmit(evt) {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, "Сохранение...", "Сохранить");
+      renderLoading(false, editSaveBtn, "Сохранение...", "Сохранить");
     });
   closePopup(editPopup);
 }
@@ -117,22 +119,31 @@ infoForm.addEventListener("submit", handleInfoFormSubmit);
 
 //Открытие попапа добавления карточек
 addPopupBtn.addEventListener("click", function () {
+  inputNameCard.value = "";
+  inputImgCard.value = "";
   openPopup(addPopup);
+  inactiveButton(settings, cardCreateBtn);
 });
+
+//Функция деактивации кнопки
+function inactiveButton(settings, button) {
+  button.disabled = true;
+  button.classList.add(settings.inactiveButtonClass);
+}
 
 //Функция обработчика формы с карточками
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  renderLoading(true, "Создание...", "Создать");
+  renderLoading(true, cardCreateBtn, "Создание...", "Создать");
   addCard(inputNameCard.value, inputImgCard.value)
     .then((data) => {
-      elementsList.prepend(createCard(data));
+      elementsList.prepend(createCard(data, myId.id));
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, "Создание...", "Создать");
+      renderLoading(false, cardCreateBtn, "Создание...", "Создать");
     });
   closePopup(addPopup);
 }
@@ -148,7 +159,7 @@ editAvatarBtn.addEventListener("click", function () {
 //Функция обработчика формы с аватаркой
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
-  renderLoading(true, "Сохранение...", "Сохранить");
+  renderLoading(true, avatarSaveBtn, "Сохранение...", "Сохранить");
   editAvatar(inputLinkAva.value)
     .then((data) => {
       ava.src = data.avatar;
@@ -157,7 +168,7 @@ function handleAvatarFormSubmit(evt) {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, "Сохранение...", "Сохранить");
+      renderLoading(false, avatarSaveBtn, "Сохранение...", "Сохранить");
     });
   closePopup(popupAvatar);
 }
