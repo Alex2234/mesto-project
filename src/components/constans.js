@@ -1,4 +1,4 @@
-export const popupes = document.querySelectorAll(".popup");
+export const popups = document.querySelectorAll(".popup");
 export const editPopup = document.getElementById("popup_info-edit");
 export const editPopupBtn = document.querySelector(".info__edit-button");
 export const closeButtons = document.querySelectorAll(".popup__button-close");

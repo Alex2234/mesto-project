@@ -1,7 +1,7 @@
 import "./pages/index.css";
 
 import {
-  popupes,
+  popups,
   editPopup,
   editPopupBtn,
   closeButtons,
@@ -32,8 +32,8 @@ import { openPopup, closePopup } from "./components/modal.js";
 import { createCard } from "./components/card.js";
 import { enableValidation } from "./components/validate.js";
 import {
-  infoProfile,
-  cardsAdd,
+  getInfoProfile,
+  getCards,
   updateProfile,
   addCard,
   editAvatar,
@@ -46,7 +46,7 @@ closeButtons.forEach((button) => {
 });
 
 // Закрытие при нажатии на Оверлей
-popupes.forEach((popup) => {
+popups.forEach((popup) => {
   popup.addEventListener("click", (evt) => {
     if (evt.target === evt.currentTarget) {
       closePopup(popup);
@@ -61,35 +61,29 @@ editPopupBtn.addEventListener("click", function () {
   jobInput.value = jobInfo.textContent;
 });
 
-//Загрузка информации о юзере с сервера
-infoProfile()
-  .then((data) => {
-    nameInfo.textContent = data.name;
-    jobInfo.textContent = data.about;
-    ava.src = data.avatar;
-    myId.id = data._id;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
-//Загрузка карточек с сервера
-cardsAdd()
-  .then((data) => {
-    data.forEach((item) => {
-      elementsList.append(createCard(item, myId.id));
-    });
-  })
-  .catch((err) => {
-    console.log(err);
+//Загрузка с сервера профиля и карточки
+Promise.all([getInfoProfile(), getCards()])
+.then(([profile, cards]) => {
+  nameInfo.textContent = profile.name;
+  jobInfo.textContent = profile.about;
+  ava.src = profile.avatar;
+  myId.id = profile._id;
+  cards.forEach((item) => {
+    elementsList.append(createCard(item, myId.id));
   });
+})
+.catch((err) => {
+  console.log(err);
+});
+
 
 //Функция демонстрации процесса загрузки
-function renderLoading(isLoading, button, textTrue, textFalse) {
+function renderLoading(isLoading, button, buttonText, loadingText) {
   if (isLoading) {
-    button.textContent = textTrue;
+    button.textContent = loadingText;
   } else {
-    button.textContent = textFalse;
+    button.textContent = buttonText;
   }
 }
 
@@ -98,20 +92,20 @@ function handleInfoFormSubmit(evt) {
   evt.preventDefault();
   const nameI = nameInput.value;
   const jobI = jobInput.value;
-  renderLoading(true, editSaveBtn, "Сохранение...", "Сохранить");
+  renderLoading(true, editSaveBtn, "Сохранить", "Сохранение");
   updateProfile(nameI, jobI, myId)
     .then((data) => {
       nameInfo.textContent = data.name;
       jobInfo.textContent = data.about;
       myId.id = data._id;
+      closePopup(editPopup);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, editSaveBtn, "Сохранение...", "Сохранить");
+      renderLoading(false, editSaveBtn, "Сохранить", "Сохранение");
     });
-  closePopup(editPopup);
 }
 
 //Сохранение данных профиля
@@ -119,8 +113,6 @@ infoForm.addEventListener("submit", handleInfoFormSubmit);
 
 //Открытие попапа добавления карточек
 addPopupBtn.addEventListener("click", function () {
-  inputNameCard.value = "";
-  inputImgCard.value = "";
   openPopup(addPopup);
   inactiveButton(settings, cardCreateBtn);
 });
@@ -134,18 +126,19 @@ function inactiveButton(settings, button) {
 //Функция обработчика формы с карточками
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  renderLoading(true, cardCreateBtn, "Создание...", "Создать");
+  renderLoading(true, cardCreateBtn, "Создать", "Создание...");
   addCard(inputNameCard.value, inputImgCard.value)
     .then((data) => {
       elementsList.prepend(createCard(data, myId.id));
+      cardForm.reset();
+      closePopup(addPopup);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, cardCreateBtn, "Создание...", "Создать");
+      renderLoading(false, cardCreateBtn, "Создать", "Создание...");
     });
-  closePopup(addPopup);
 }
 
 //Сохранение карточки
@@ -159,18 +152,19 @@ editAvatarBtn.addEventListener("click", function () {
 //Функция обработчика формы с аватаркой
 function handleAvatarFormSubmit(evt) {
   evt.preventDefault();
-  renderLoading(true, avatarSaveBtn, "Сохранение...", "Сохранить");
+  renderLoading(true, avatarSaveBtn, "Сохранить", "Сохранение");
   editAvatar(inputLinkAva.value)
     .then((data) => {
       ava.src = data.avatar;
+      avatarForm.reset();
+      closePopup(popupAvatar);
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      renderLoading(false, avatarSaveBtn, "Сохранение...", "Сохранить");
+      renderLoading(false, avatarSaveBtn, "Сохранить", "Сохранение");
     });
-  closePopup(popupAvatar);
 }
 
 //Сохранение аватара

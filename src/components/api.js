@@ -1,22 +1,22 @@
 import { config } from "./constans.js";
 
 //Функция проверки
-function onResponse(res) {
+function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject("Ошибка на строне сервера");
 }
 
 //Функция запроса информации о юзере с сервера
-export function infoProfile() {
+export function getInfoProfile() {
   return fetch(`${config.url}/users/me`, {
     headers: config.headers,
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция запроса карточек с сервера
-export function cardsAdd() {
+export function getCards() {
   return fetch(`${config.url}/cards`, {
     headers: config.headers,
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция редактирования профиля
@@ -29,7 +29,7 @@ export function updateProfile(name, job, id) {
       about: job,
       _id: id,
     }),
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция добавления новой карточки
@@ -41,7 +41,7 @@ export function addCard(name, link) {
       name: name,
       link: link,
     }),
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция удаления карточки
@@ -49,7 +49,7 @@ export function deleteCard(idcard) {
   return fetch(`${config.url}/cards/${idcard}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция постановки лайка
@@ -57,7 +57,7 @@ export function putLike(idcard) {
   return fetch(`${config.url}/cards/likes/${idcard}`, {
     method: "PUT",
     headers: config.headers,
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция удаления лайка
@@ -65,7 +65,7 @@ export function deleteLike(idcard) {
   return fetch(`${config.url}/cards/likes/${idcard}`, {
     method: "DELETE",
     headers: config.headers,
-  }).then(onResponse);
+  }).then(checkResponse);
 }
 
 //Функция изменения аватара
@@ -76,5 +76,5 @@ export function editAvatar(ava) {
     body: JSON.stringify({
       avatar: ava,
     }),
-  }).then(onResponse);
+  }).then(checkResponse);
 }
